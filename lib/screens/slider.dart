@@ -24,9 +24,31 @@ class _VolumeSliderState extends State<VolumeSlider> {
             padding: const EdgeInsets.all(8.0),
             child: Center(
                 child: Row(children: [
-              _value >= 50
-                  ? Icon(Icons.volume_up, size: 40)
-                  : Icon(Icons.volume_down, size: 40),
+              _value > 50
+                  ? IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _value = 0;
+                        });
+                      },
+                      icon: Icon(
+                        Icons.volume_up,
+                        color: Colors.red,
+                        size: 40,
+                      ))
+                  : _value == 0
+                      ? Icon(Icons.volume_off_sharp, size: 40)
+                      : IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _value = 0;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.volume_down,
+                            color: Colors.green,
+                            size: 40,
+                          )),
               SizedBox(width: 10),
               Expanded(
                   child: Slider(
